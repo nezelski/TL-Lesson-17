@@ -1,4 +1,4 @@
-import { Locator, Page } from '@playwright/test'
+import type { Locator, Page } from '@playwright/test'
 import { OrderPage } from './order-page'
 import { SERVICE_URL } from '../../config/env-data'
 
@@ -8,6 +8,7 @@ export class LoginPage {
   readonly signInButton: Locator
   readonly usernameField: Locator
   readonly passwordField: Locator
+  readonly errorMessagePopup: Locator
   // add more locators here
 
   constructor(page: Page) {
@@ -15,7 +16,7 @@ export class LoginPage {
     this.signInButton = page.getByTestId('signIn-button')
     this.usernameField = page.getByTestId('username-input')
     this.passwordField = page.getByTestId('password-input')
-    // continue with the rest of the implementation below
+    this.errorMessagePopup = page.getByTestId('authorizationError-popup')
   }
 
   async open() {
@@ -26,8 +27,7 @@ export class LoginPage {
     await this.usernameField.fill(username)
     await this.passwordField.fill(password)
     await this.signInButton.click()
+
     return new OrderPage(this.page)
   }
-
-  // continue with the rest of the implementation below
 }
