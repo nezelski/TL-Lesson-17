@@ -19,7 +19,7 @@ export class OrderPage extends BasePage {
   readonly orderIdInputField: Locator
   readonly trackButton: Locator
 
-  constructor(page: Page, url: string) {
+  constructor(page: Page, url?: string) {
     super(page, url ? url : SERVICE_URL)
     this.statusButton = page.getByTestId('openStatusPopup-button')
     this.nameField = page.getByTestId('username-input')
