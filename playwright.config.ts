@@ -38,8 +38,8 @@ export default defineConfig({
     {
       name: 'webkit',
       use: {
-          ...devices['Desktop Safari'],
-          serviceWorkers: 'block'
+        ...devices['Desktop Safari'],
+        serviceWorkers: 'block',
       },
     },
   ],

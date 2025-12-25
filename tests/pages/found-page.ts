@@ -9,12 +9,11 @@ export default class FoundPage extends BasePage {
 
   constructor(page: Page, url?: string) {
     super(page, url ? url : SERVICE_URL)
-    this.orderName = this.page.locator('.order-list__description').first();
-    this.statusActive = this.page.locator('.status-list__status_active');
-    this.statusInactive = this.page.locator('status-list__status false');
+    this.orderName = this.page.locator('.order-list__description').first()
+    this.statusActive = this.page.locator('.status-list__status_active')
+    this.statusInactive = this.page.locator('status-list__status false')
   }
   async getStatusActive(): Promise<String> {
-     return (await this.statusActive.innerText()).trim();
+    return (await this.statusActive.innerText()).trim()
   }
-
 }
