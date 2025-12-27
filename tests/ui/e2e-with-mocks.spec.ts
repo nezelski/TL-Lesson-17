@@ -5,7 +5,7 @@ import FoundPage from '../pages/found-page'
 import NotFoundPage from '../pages/not-found-page'
 
 const jwt =
-  'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJyb21hbm5qaiIsImV4cCI6MTc2NjY4MTA0MywiaWF0IjoxNzY2NjYzMDQzfQ.U0lFzvzskAa8qRLgESRDS_T6iFXXHE1YTqN4KBJqi6KHjo8d0rgf_cCOjj5Bge8lX74fy2CEvGNHg6O4Kac24Q'
+  'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJyb21hbm5qaiIsImV4cCI6MTc2Njg0MzQwOSwiaWF0IjoxNzY2ODI1NDA5fQ.Xtl8fm3pjXJwb0Xe61blhGQP4soz4nuD_3LBtDWGyV50_WveqBrNWa1EiOrbNuXQrHA9kclNLaWEDj7cLIlUeg'
 
 test('TL-22-1  signIn with mocks', async ({ page }) => {
   const loginPage = new LoginPage(page)
@@ -50,8 +50,8 @@ test('TL-22-2  create and find order with mocks', async ({ context }) => {
   const createOrderResponse = page.waitForResponse('**/orders')
   await orderPage.orderCreationButton.click()
   await createOrderResponse
-
   await orderPage.checkOrderCreationPopupVisible()
+
   expect(await orderPage.getOrderIdPopup()).toBe(newOrder.id)
   await orderPage.okButton.click()
   await orderPage.statusButton.click()
