@@ -3,6 +3,9 @@ import { OrderPage } from './order-page'
 import { SERVICE_URL } from '../../config/env-data'
 import BasePage from './base-page'
 
+const jwt =
+  'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJyb21hbm5qaiIsImV4cCI6MTc2NTkwMTgyOCwiaWF0IjoxNzY1ODgzODI4fQ.dCjYn_X1a8cTbCb8H2ce9oCMilmrN5ATLQ5eeDytfbUHzoA8UL8rwjXveIePlcVN3zgRkOv6EIoCR0IpnOSEWA'
+
 export class LoginPage extends BasePage {
   readonly url: string = SERVICE_URL
   readonly signInButton: Locator
@@ -29,5 +32,14 @@ export class LoginPage extends BasePage {
     await this.clickElement(this.signInButton)
 
     return new OrderPage(this.page, this.url)
+  }
+
+  async mockAuth(): Promise<void> {
+    await this.page.route('**/login/student', async (route) => {
+      await route.fulfill({
+        status: 200,
+        body: jwt,
+      })
+    })
   }
 }
